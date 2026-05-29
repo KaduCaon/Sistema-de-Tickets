@@ -1,0 +1,52 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: 'configuracoes' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <div class="page-title">
+      <div>
+        <h1>Configurações</h1>
+        <p>Preferências gerais da conta e do sistema</p>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2>Perfil</h2>
+      <div class="info-grid">
+        <div>
+          <strong>Nome</strong>
+          <span><%= usuario.nome %></span>
+        </div>
+        <div>
+          <strong>E-mail</strong>
+          <span><%= usuario.email %></span>
+        </div>
+        <div>
+          <strong>Tipo</strong>
+          <span><%= usuario.tipo === 'admin' ? 'Administrador' : 'Usuário' %></span>
+        </div>
+        <div>
+          <strong>Notificações</strong>
+          <span>Ativas</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Preferências</h2>
+      <form>
+        <label>Idioma</label>
+        <select>
+          <option>Português (Brasil)</option>
+        </select>
+
+        <label>Fuso horário</label>
+        <select>
+          <option>America/Sao_Paulo</option>
+        </select>
+      </form>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

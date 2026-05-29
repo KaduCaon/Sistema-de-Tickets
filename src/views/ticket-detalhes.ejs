@@ -1,0 +1,68 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: 'tickets' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <a class="back-link" href="/tickets"><i class="bi bi-arrow-left"></i>Voltar para a lista</a>
+    <div class="page-title details-title">
+      <div class="ticket-title-wrap">
+        <h1>Ticket #<%= ticket.id %></h1>
+        <span class="badge <%= ticket.status === 'aberto' ? 'status-open' : (ticket.status === 'em_andamento' ? 'status-progress' : (ticket.status === 'finalizado' ? 'status-done' : 'status-canceled')) %>"><%= ticket.status.replace('_', ' ') %></span>
+      </div>
+      <a class="button secondary" href="/tickets/<%= ticket.id %>/editar">Editar</a>
+    </div>
+
+    <section class="panel info-grid info-grid-details">
+      <div><strong>Título</strong><span><%= ticket.titulo %></span></div>
+      <div><strong>Prioridade</strong><span><%= ticket.prioridade %></span></div>
+      <div><strong>Criado em</strong><span><%= new Date(ticket.dataCriacao).toLocaleString('pt-BR') %></span></div>
+      <div><strong>Criado por</strong><span><i class="bi bi-person-circle"></i> <%= criador ? criador.nome : 'Usuário' %></span></div>
+    </section>
+
+    <section class="panel">
+      <h2>Descrição</h2>
+      <p><%= ticket.descricao %></p>
+    </section>
+
+    <% if (usuario.tipo === 'admin') { %>
+      <section class="panel">
+        <h2>Alterar Status</h2>
+        <form action="/admin/tickets/<%= ticket.id %>/status" method="POST" class="inline-form">
+          <select name="status">
+            <option value="aberto">Aberto</option>
+            <option value="em_andamento">Em andamento</option>
+            <option value="finalizado">Finalizado</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          <button type="submit" class="button">Alterar</button>
+        </form>
+      </section>
+    <% } %>
+
+    <section class="panel">
+      <h2>Histórico de Respostas</h2>
+      <% if (!respostas.length) { %>
+        <p>Nenhuma resposta enviada ainda.</p>
+      <% } %>
+      <% respostas.forEach(resposta => { %>
+        <div class="answer">
+          <div class="answer-head">
+            <strong><%= resposta.usuario ? resposta.usuario.nome : 'Usuário' %></strong>
+            <small><%= new Date(resposta.dataCriacao).toLocaleString('pt-BR') %></small>
+          </div>
+          <p><%= resposta.mensagem %></p>
+        </div>
+      <% }) %>
+    </section>
+
+    <section class="panel">
+      <h2>Nova resposta</h2>
+      <form action="/tickets/<%= ticket.id %>/respostas" method="POST">
+        <textarea name="mensagem" rows="4" placeholder="Digite sua resposta..." required></textarea>
+        <button type="submit" class="button"><i class="bi bi-send"></i>Enviar Resposta</button>
+      </form>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

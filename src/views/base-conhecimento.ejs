@@ -1,0 +1,45 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: 'base-conhecimento' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <div class="page-title">
+      <div>
+        <h1>Base de Conhecimento</h1>
+        <p>Guias rápidos e soluções para dúvidas frequentes</p>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2>Artigos em destaque</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tema</th>
+            <th>Categoria</th>
+            <th>Última atualização</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Como acompanhar o status de um ticket</td>
+            <td>Tickets</td>
+            <td>29/05/2026</td>
+          </tr>
+          <tr>
+            <td>Boas práticas para abrir chamados</td>
+            <td>Atendimento</td>
+            <td>28/05/2026</td>
+          </tr>
+          <tr>
+            <td>Fluxo de aprovação para administradores</td>
+            <td>Administração</td>
+            <td>27/05/2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

@@ -1,0 +1,60 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: 'tickets' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <div class="page-title">
+      <div>
+        <h1>Meus Tickets</h1>
+        <p>Acompanhe todos os seus tickets</p>
+      </div>
+      <a class="button" href="/tickets/novo"><i class="bi bi-plus-square"></i>Novo Ticket</a>
+    </div>
+
+    <section class="panel panel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Prioridade</th>
+            <th>Criado em</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (!tickets.length) { %>
+            <tr><td colspan="6">Nenhum ticket encontrado.</td></tr>
+          <% } %>
+          <% tickets.forEach(ticket => { %>
+            <% const statusClass = ticket.status === 'aberto' ? 'status-open' : (ticket.status === 'em_andamento' ? 'status-progress' : (ticket.status === 'finalizado' ? 'status-done' : 'status-canceled')); %>
+            <% const prioridadeClass = ticket.prioridade === 'alta' ? 'priority-high' : (ticket.prioridade === 'media' ? 'priority-medium' : 'priority-low'); %>
+            <tr>
+              <td>#<%= ticket.id %></td>
+              <td>
+                <strong><%= ticket.titulo %></strong>
+                <p class="table-subtitle"><%= ticket.descricao %></p>
+              </td>
+              <td><span class="badge <%= statusClass %>"><%= ticket.status.replace('_', ' ') %></span></td>
+              <td><span class="badge <%= prioridadeClass %>"><%= ticket.prioridade %></span></td>
+              <td><%= new Date(ticket.dataCriacao).toLocaleDateString('pt-BR') %><br><small><%= new Date(ticket.dataCriacao).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) %></small></td>
+              <td><a class="small-button outline" href="/tickets/<%= ticket.id %>"><i class="bi bi-eye"></i>Ver</a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <div class="table-footer">
+        <span>Mostrando 1 a <%= tickets.length %> de <%= tickets.length %> tickets</span>
+        <div class="table-pagination">
+          <button type="button" class="page-button"><i class="bi bi-chevron-left"></i></button>
+          <button type="button" class="page-button active">1</button>
+          <button type="button" class="page-button"><i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

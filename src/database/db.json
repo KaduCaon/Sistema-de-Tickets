@@ -1,0 +1,14 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Administrador",
+      "email": "admin@email.com",
+      "senha": "$2a$10$bsT.xp4.ABsl6dJ68MU0ruMgIMvq9VkUbX9ppbYQPZukpBvF.3ccC",
+      "tipo": "admin",
+      "dataCriacao": "2026-05-29T23:02:58.660Z"
+    }
+  ],
+  "tickets": [],
+  "respostas": []
+}

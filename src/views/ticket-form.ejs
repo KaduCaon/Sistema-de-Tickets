@@ -1,0 +1,63 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: ticket ? 'tickets' : 'novo-ticket' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <a class="back-link" href="/tickets"><i class="bi bi-arrow-left"></i>Voltar para a lista</a>
+    <h1><%= ticket ? 'Editar Ticket' : 'Novo Ticket' %></h1>
+    <p class="page-subtitle">Preencha as informações do ticket</p>
+
+    <% if (erro) { %>
+      <div class="alert"><%= erro %></div>
+    <% } %>
+
+    <section class="panel ticket-form-panel">
+      <form action="<%= ticket ? `/tickets/${ticket.id}/editar` : '/tickets' %>" method="POST" class="ticket-form-grid">
+        <label>Título</label>
+        <input type="text" name="titulo" value="<%= ticket ? ticket.titulo : '' %>" required>
+
+        <label>Descrição</label>
+        <textarea name="descricao" rows="6" required><%= ticket ? ticket.descricao : '' %></textarea>
+
+        <div class="form-row-2">
+          <div>
+            <label>Prioridade</label>
+            <div class="input-with-icon">
+              <i class="bi bi-flag"></i>
+              <select name="prioridade" required>
+                <option value="baixa" <%= ticket && ticket.prioridade === 'baixa' ? 'selected' : '' %>>Baixa</option>
+                <option value="media" <%= ticket && ticket.prioridade === 'media' ? 'selected' : '' %>>Média</option>
+                <option value="alta" <%= ticket && ticket.prioridade === 'alta' ? 'selected' : '' %>>Alta</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label>Categoria</label>
+            <div class="input-with-icon">
+              <i class="bi bi-grid"></i>
+              <input type="text" name="categoria" value="<%= ticket ? ticket.categoria : 'Geral' %>">
+            </div>
+          </div>
+        </div>
+
+        <% if (usuario.tipo === 'admin' && ticket) { %>
+          <label>Status</label>
+          <select name="status">
+            <option value="aberto" <%= ticket.status === 'aberto' ? 'selected' : '' %>>Aberto</option>
+            <option value="em_andamento" <%= ticket.status === 'em_andamento' ? 'selected' : '' %>>Em andamento</option>
+            <option value="finalizado" <%= ticket.status === 'finalizado' ? 'selected' : '' %>>Finalizado</option>
+            <option value="cancelado" <%= ticket.status === 'cancelado' ? 'selected' : '' %>>Cancelado</option>
+          </select>
+        <% } %>
+
+        <div class="form-actions">
+          <button type="submit" class="button"><i class="bi bi-floppy"></i>Salvar Ticket</button>
+          <a class="button secondary" href="/tickets"><i class="bi bi-ban"></i>Cancelar</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

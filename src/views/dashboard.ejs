@@ -1,0 +1,74 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: 'dashboard' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <section class="page-head">
+      <h1>Dashboard</h1>
+      <p>Bem-vindo de volta, <%= usuario.nome %>!</p>
+    </section>
+
+    <h2 class="section-title">Resumo de Tickets</h2>
+    <section class="cards summary-cards">
+      <article class="card summary-card">
+        <div class="stat-icon stat-blue"><i class="bi bi-ticket-perforated"></i></div>
+        <div>
+          <strong><%= resumo.abertos %></strong>
+          <span>Tickets abertos</span>
+        </div>
+      </article>
+      <article class="card summary-card">
+        <div class="stat-icon stat-amber"><i class="bi bi-clock"></i></div>
+        <div>
+          <strong><%= resumo.andamento %></strong>
+          <span>Em andamento</span>
+        </div>
+      </article>
+      <article class="card summary-card">
+        <div class="stat-icon stat-green"><i class="bi bi-check-circle"></i></div>
+        <div>
+          <strong><%= resumo.finalizados %></strong>
+          <span>Finalizados</span>
+        </div>
+      </article>
+      <article class="card summary-card">
+        <div class="stat-icon stat-red"><i class="bi bi-x-circle"></i></div>
+        <div>
+          <strong><%= resumo.cancelados %></strong>
+          <span>Cancelados</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel quick-actions">
+      <div class="quick-illustration">
+        <i class="bi bi-clipboard2-check"></i>
+      </div>
+
+      <div class="quick-list">
+        <a class="quick-item quick-item-primary" href="/tickets/novo">
+          <span><i class="bi bi-plus-square"></i>Criar Novo Ticket</span>
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <a class="quick-item" href="/tickets">
+          <span><i class="bi bi-search"></i>Ver Meus Tickets</span>
+          <i class="bi bi-chevron-right"></i>
+        </a>
+        <a class="quick-item" href="/base-conhecimento">
+          <span><i class="bi bi-book"></i>Base de Conhecimento</span>
+          <i class="bi bi-chevron-right"></i>
+        </a>
+      </div>
+    </section>
+
+    <section class="panel info-banner">
+      <div>
+        <h3>Fique por dentro</h3>
+        <p>Acompanhe seus chamados e obtenha suporte de forma rápida e eficiente.</p>
+      </div>
+      <i class="bi bi-headset"></i>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

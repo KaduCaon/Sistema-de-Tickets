@@ -1,0 +1,19 @@
+{
+  "name": "sistema-de-tickets",
+  "version": "1.0.0",
+  "description": "Sistema de Tickets com Node.js, Express, sessões e arquitetura em camadas.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

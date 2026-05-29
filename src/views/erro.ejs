@@ -1,0 +1,16 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <% if (usuario) { %><%- include('partials_nav', { usuario, currentPage: 'dashboard' }) %><% } %>
+  <main class="content app-content">
+    <% if (usuario) { %><%- include('partials_topbar', { usuario }) %><% } %>
+    <section class="error-wrap">
+      <article class="auth-card error-card">
+        <div class="auth-icon error"><i class="bi bi-exclamation-triangle"></i></div>
+        <h1>Ocorreu um erro</h1>
+        <p><%= mensagem %></p>
+        <a class="button" href="/dashboard"><i class="bi bi-arrow-left"></i>Voltar</a>
+      </article>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

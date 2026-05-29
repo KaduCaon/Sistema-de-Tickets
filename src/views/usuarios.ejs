@@ -1,0 +1,38 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: 'usuarios' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <div class="page-title">
+      <div>
+        <h1>Usuários</h1>
+        <p>Gerenciamento de usuários cadastrados</p>
+      </div>
+    </div>
+
+    <section class="panel panel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Tipo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% usuarios.forEach(u => { %>
+            <tr>
+              <td><%= u.id %></td>
+              <td><%= u.nome %></td>
+              <td><%= u.email %></td>
+              <td><%= u.tipo %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>

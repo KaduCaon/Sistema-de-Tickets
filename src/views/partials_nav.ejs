@@ -1,0 +1,31 @@
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-icon"><i class="bi bi-headset"></i></div>
+    <div>
+      <strong>Sistema de Tickets</strong>
+      <span>Help Desk</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="<%= currentPage === 'dashboard' ? 'active' : '' %>" href="/dashboard"><i class="bi bi-house-door"></i>Dashboard</a>
+    <a class="<%= currentPage === 'tickets' ? 'active' : '' %>" href="/tickets"><i class="bi bi-ticket-perforated"></i>Meus Tickets</a>
+    <a class="<%= currentPage === 'novo-ticket' ? 'active' : '' %>" href="/tickets/novo"><i class="bi bi-plus-square"></i>Novo Ticket</a>
+
+    <div class="sidebar-divider"></div>
+
+    <a class="<%= currentPage === 'base-conhecimento' ? 'active' : '' %>" href="/base-conhecimento"><i class="bi bi-journal-text"></i>Base de Conhecimento</a>
+    <a class="<%= currentPage === 'relatorios' ? 'active' : '' %>" href="/relatorios"><i class="bi bi-bar-chart"></i>Relatórios</a>
+    <a class="<%= currentPage === 'configuracoes' ? 'active' : '' %>" href="/configuracoes"><i class="bi bi-gear"></i>Configurações</a>
+
+    <% if (usuario && usuario.tipo === 'admin') { %>
+      <div class="sidebar-divider"></div>
+      <a class="<%= currentPage === 'usuarios' ? 'active' : '' %>" href="/admin/usuarios"><i class="bi bi-people"></i>Usuários</a>
+      <a class="<%= currentPage === 'admin-tickets' ? 'active' : '' %>" href="/admin/tickets"><i class="bi bi-list-check"></i>Todos os Tickets</a>
+    <% } %>
+  </nav>
+
+  <form action="/logout" method="POST" class="logout-form">
+    <button class="link-button" type="submit"><i class="bi bi-box-arrow-right"></i>Sair do Sistema</button>
+  </form>
+</aside>

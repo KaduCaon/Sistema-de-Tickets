@@ -1,0 +1,44 @@
+<%- include('partials_header') %>
+<div class="layout private-layout">
+  <%- include('partials_nav', { usuario, currentPage: 'relatorios' }) %>
+  <main class="content app-content">
+    <%- include('partials_topbar', { usuario }) %>
+
+    <div class="page-title">
+      <div>
+        <h1>Relatórios</h1>
+        <p>Resumo atual da operação de tickets</p>
+      </div>
+    </div>
+
+    <section class="cards summary-cards">
+      <article class="card summary-card">
+        <div class="stat-icon stat-blue"><i class="bi bi-ticket-perforated"></i></div>
+        <div>
+          <strong><%= total %></strong>
+          <span>Total de tickets</span>
+        </div>
+      </article>
+      <article class="card summary-card">
+        <div class="stat-icon stat-amber"><i class="bi bi-hourglass-split"></i></div>
+        <div>
+          <strong><%= emAberto %></strong>
+          <span>Tickets em aberto</span>
+        </div>
+      </article>
+      <article class="card summary-card">
+        <div class="stat-icon stat-green"><i class="bi bi-check-circle"></i></div>
+        <div>
+          <strong><%= finalizados %></strong>
+          <span>Tickets finalizados</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Visão geral</h2>
+      <p>Esta aba apresenta indicadores rápidos. Se quiser, posso evoluir para gráficos e filtros por período.</p>
+    </section>
+  </main>
+</div>
+<%- include('partials_footer') %>
